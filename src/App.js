@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import Select from './Components/Select';
+import Card from './Components/Card';
+import './Styles/DogApp.css';
+import { useEffect, useState } from 'react';
+import { getDog } from './Functions/getDog';
 
-function App() {
+const initialValue = {
+  image:
+    'https://estaticos.muyinteresante.es/media/cache/1140x_thumb/uploads/images/gallery/59bbb29c5bafe878503c9872/husky-siberiano-bosque.jpg',
+  breed: {
+    id: 1,
+    name: 'Labrador',
+  },
+};
+
+const App = () => {
+  const [dog, setDog] = useState(initialValue);
+  const [loading, setLoading] = useState(true);
+
+  const updateDataDog = async (id = 1) => {
+    const DogInfo = await getDog(id);
+    setLoading(false);
+    setDog(DogInfo);
+  };
+
+  useEffect(() => {
+    updateDataDog();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Perritos a montones :)</h1>
+      <Select updateDataDog={updateDataDog} />
+      <Card dog={dog} updateDataDog={updateDataDog} loading={loading} />
     </div>
   );
-}
+};
 
 export default App;
