@@ -10,7 +10,7 @@
   <p align="center">
     Proyecto de práctica React y la Dog api.
     <br />
-    <a href="https://nifty-blackwell-9eb921.netlify.app/" target="_blank">Ver en línea</a>
+    <a href="https://dogsapi-react-app.netlify.app/" target="_blank">Ver en línea</a>
     ·
   </p>
 </div>
